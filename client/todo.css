@@ -1,0 +1,82 @@
+* {
+ background-color: skyblue;   
+ margin: 20px auto;
+}
+h1 {
+    text-align: center;
+}
+.todoform {
+  
+    margin-left: 400px;
+    width: 500px;
+    background-color: aqua;
+    padding: 20px;
+    
+}
+label {
+    font-size: 25px;
+    font-weight: 500;
+   
+}
+input {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 10px;
+
+}
+textarea{
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+
+.button {
+    margin-top: 10px;
+    color: white;
+    background-color: blue;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-left: 200px;
+    cursor: pointer;
+    border: none;
+
+}
+.listitem{
+    margin-left: 400px;
+    width: 500px;
+    padding: 20px;
+    background-color: blue;
+}
+.listitem > ul ,li {
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+}
+#edit{
+    margin: 10px;
+    padding: 10px 25px;
+    background-color: green;
+    color: white;
+    border-radius: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+
+}
+#delete{
+    margin: 10px;
+    padding: 10px 25px;
+    background-color: green;
+    color: white;
+    border-radius: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+
+}
