@@ -1,82 +1,65 @@
-* {
- background-color: skyblue;   
- margin: 20px auto;
+.todo{
+    width: 20%;
+    background-color: rgb(225, 122, 122);
+    padding: 30px;
+    margin-left: 8px;
+    margin-top: 5%;
+    border: 10px solid;
+    border-radius: 10px;
+    border-color: black;
+    font-size: large;
 }
-h1 {
-    text-align: center;
-}
-.todoform {
-  
-    margin-left: 400px;
-    width: 500px;
-    background-color: aqua;
-    padding: 20px;
-    
-}
-label {
-    font-size: 25px;
-    font-weight: 500;
-   
-}
-input {
-    width: 100%;
-    box-sizing: border-box;
-    font-size: 16px;
-    padding: 10px;
-    margin-top: 10px;
-
-}
-textarea{
-    width: 100%;
-    box-sizing: border-box;
-    font-size: 16px;
-    padding: 10px;
-    margin-top: 10px;
-}
-
-
-.button {
-    margin-top: 10px;
-    color: white;
-    background-color: blue;
-    padding: 10px 20px;
-    border-radius: 5px;
+#btn{
+    background-color: rgb(15, 5, 90);
     font-weight: bold;
-    margin-left: 200px;
-    cursor: pointer;
+    color: whitesmoke;
+    padding: 10px 20px;
+    margin:3px;
+    border-radius: 5px;
     border: none;
+    border:3px solid black;
+    font-size: large;
+}
 
+#btne{
+    background-color: rgb(31, 120, 6);
+    font-weight: bold;
+    color: whitesmoke;
+    padding: 5px 10px;
+    margin:10px;
+    border-radius: 5px;
+    border: none;
+    border:2px solid black;
+    cursor: pointer;
+}
+#btnd{
+    background-color: rgb(237, 18, 18);
+    font-weight: bold;
+    color: whitesmoke;
+    padding: 5px 10px;
+    margin:10px;
+    border-radius: 5px;
+    border: none;
+    border:2px solid black;
+    cursor: pointer;
+}
+#title{
+    width: 50%;
+    height: 30px;
+}
+#description{
+    width: 70%;
+    height: 40px;
 }
 .listitem{
-    margin-left: 400px;
-    width: 500px;
-    padding: 20px;
-    background-color: blue;
-}
-.listitem > ul ,li {
-    background-color: blue;
-    color: white;
-    font-weight: bold;
-}
-#edit{
-    margin: 10px;
-    padding: 10px 25px;
-    background-color: green;
-    color: white;
-    border-radius: 15px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-
-}
-#delete{
-    margin: 10px;
-    padding: 10px 25px;
-    background-color: green;
-    color: white;
-    border-radius: 15px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-
+    width: 35%;
+    background-color: #e17a7a;
+    padding: 30px;
+    margin-left: 30%;
+    margin-top: -30%;
+    border: 10px solid;
+    border-radius: 10px;
+    border-color: black;
+    font-size:large;
+    font-weight: bolder;
 }

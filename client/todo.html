@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./todo.css">
     <title>Todo</title>
+    <link rel="stylesheet" href="./todo.css" /> <!-- Fixed link tag syntax -->
 </head>
+
 <body>
-    <h1>Todo App</h1><br>
-    <div class="todoform">
-        
-        <label for="title">Title:</label>
-        <input type="text" id="title">
+    <div class="todo">
+        <h1>Todo Application</h1>
+        <label>Title:</label>
+        <br>
+        <input id="title" />
         <br><br>
-        <label for="des">Description:</label>
-        <textarea id="des"> </textarea>
-        
-        <button class="button" onclick="addTodo()">Add Todo</button>
+        <label>Description:</label>
+        <br>
+        <textarea id="description"></textarea>
+        <br><br>
+        <button id="btn" onclick="createtodo()">Save</button>
+    </div>
+    <div class="listitem">
+        <ul id="todoList"> </ul>
     </div>
     <script src="./todo.js"></script>
-    <div class="listitem">
-        <ul id="tarea"></ul>
-    </div>
-    
 </body>
+
 </html>
