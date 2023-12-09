@@ -46,9 +46,9 @@ fetchData();
  */
  async function createtodo() {
     try {
-        let ti = document.getElementById('title').value
-        let des = document.getElementById('description').value
-        let data = { title: ti, description: des }
+        let ti = document.getElementById('title')
+        let des = document.getElementById('description')
+        let data = { title: ti.value, description: des.value }
         const response = await fetch('http://localhost:3000/todos', {
             method: "POST",
             headers: {
@@ -61,6 +61,9 @@ fetchData();
             }
             const res = response.json();
             console.log(res, "dfsdfs")
+            ti.value = ""
+            des.value = ""
+
             fetchData()
         })
     } catch (error) {
