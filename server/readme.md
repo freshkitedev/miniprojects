@@ -15,3 +15,8 @@
 
 ### Collections
 todo : {title:"", description:""}
+
+###Usage
+Navigate to server directory and execute below command
+npm install
+npm start
