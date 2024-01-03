@@ -26,4 +26,20 @@ const signupAdmin = (req, res) => {
   Adminmodel.findOne({ username }).then(createAdmin);
 };
 
+export const loginAdmin = (req, res) => {
+    const {username, password} = req.body;
+
+    function loginAdmin(admin) {
+        if (!admin) {
+            res.status(403).json({message:"Admin doesn't exist"});
+            return;
+        }
+
+        const token  = jwt.sign({username, role:"Admin"}, SECRET_KEY, {expiresIn:'1h'});
+        console.log("Admin logged in");
+        res.status(200).json({message:"Admin logged in Succesfully", token});
+    }
+    Adminmodel.findOne({username}).then(loginAdmin);
+}
+
 export default signupAdmin;
