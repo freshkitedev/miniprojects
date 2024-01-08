@@ -1,7 +1,8 @@
 import mon from "mongoose";
 import Adminmodel from "../Model/adminModel.js";
 import jwt from "jsonwebtoken";
-const SECRET_KEY = "SecCourseSellapp";
+import { courseModel } from "../Model/courseModel.js";
+import { SECRET_KEY } from "../Middleware/auth.js";
 
 const signupAdmin = (req, res) => {
   console.log("Reached route:", req.body);
@@ -40,6 +41,25 @@ export const loginAdmin = (req, res) => {
         res.status(200).json({message:"Admin logged in Succesfully", token});
     }
     Adminmodel.findOne({username}).then(loginAdmin);
+}
+
+export const addCourse = async (req, res) => {
+  const courseInfo = req.body;
+  await courseModel.findOne({Title:courseInfo.Title}).then(async (course) => {
+    if (course) {
+      res.status(403).json({msg:"Course already available choose different title",
+        title:courseInfo.Title})
+    } else {
+      try {
+        const courseData = new courseModel(courseInfo);
+        await courseData.save();
+        console.log("addCourse:", courseInfo);
+        res.status(200).json({ msg: "Course Added succesfully", courseInfo });
+      } catch (err) {
+        res.status(400).json({ message: "Error while update course to DB" });
+      }
+    }
+  })
 }
 
 export default signupAdmin;

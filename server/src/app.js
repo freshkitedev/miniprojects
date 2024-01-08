@@ -10,8 +10,6 @@ dot.config();
 app.use(exp.json())
 app.use("/admin", adminRouter);
 
-
-
 const connect = async () => {
     try {
       await mon.connect(process.env.MONGO, {
