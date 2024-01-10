@@ -44,6 +44,7 @@ export const loginAdmin = (req, res) => {
 }
 
 export const addCourse = async (req, res) => {
+  console.log("inside");
   const courseInfo = req.body;
   await courseModel.findOne({Title:courseInfo.Title}).then(async (course) => {
     if (course) {
@@ -62,4 +63,13 @@ export const addCourse = async (req, res) => {
   })
 }
 
+export const getAllCourses = async (req, res) => {
+  try {
+    const courses = await courseModel.find();
+    res.status(200).json({ courses });
+  } catch (err) {
+    console.error( err);
+    res.status(500).json({ message: " Error" });
+  }
+};
 export default signupAdmin;
