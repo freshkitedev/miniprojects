@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import { courseModel } from "../Model/courseModel.js";
 import { SECRET_KEY } from "../Middleware/auth.js";
 
+
 const signupAdmin = (req, res) => {
   console.log("Reached route:", req.body);
   const data = { username: req.body.username, password: req.body.password };
@@ -61,5 +62,17 @@ export const addCourse = async (req, res) => {
     }
   })
 }
+export const deletecourse = async (req, res) => {
+  const courseInfo = req.params.Title;
+  await courseModel.findOneAndDelete(courseInfo).then( async (course) => {
+    if (course) {
+      res.status(200).json({msg:"course deleted successfully",course})
+      console.log("deletecourse:", courseInfo);
+    } else {
+      res.status(404).json({msg:"No such courses Available"})
+    }
+  })
+}
+
 
 export default signupAdmin;
