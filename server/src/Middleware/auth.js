@@ -9,7 +9,7 @@ export const verifyToken = (req, res, next) => {
         res.status(401).json({message:"Invalid token"})
       } else {
         console.log("Valid Admin:", value);
-        if (value.role == "admin") {
+        if (value.role == "Admin") {
           console.log("Valid Admin2:", value);
           req.user = value.username;
           next();
