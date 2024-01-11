@@ -1,0 +1,17 @@
+{
+  "name": "miniprojects",
+  "version": "1.0.0",
+  "description": "Each branch in this repo is a mini project.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

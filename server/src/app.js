@@ -2,6 +2,7 @@ import exp from "express"
 import mon from "mongoose"
 import dot from "dotenv"
 import adminRouter from "./Routes/adminRoute.js"
+import userRouter from "./Routes/userRoute.js"
 
 const app = exp()
 
@@ -9,6 +10,10 @@ dot.config();
 
 app.use(exp.json())
 app.use("/admin", adminRouter);
+app.use("/user",userRouter)
+
+
+  
 
 const connect = async () => {
     try {
