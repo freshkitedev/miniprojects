@@ -62,12 +62,13 @@ export const addCourse = async (req, res) => {
   })
 }
 export const updateCourse = async (req, res) => {
-  const courseId = req.id; 
+  const courseId = req.params.id; 
   const updatedCourseInfo = req.body;
 
   try {
     // Check if the course with the given ID exists
     const existingCourse = await courseModel.findById(courseId);
+    console.log(existingCourse);
 
     if (!existingCourse) {
       return res.status(404).json({ msg: "Course not found" });
