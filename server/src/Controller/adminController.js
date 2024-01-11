@@ -61,5 +61,29 @@ export const addCourse = async (req, res) => {
     }
   })
 }
+export const updateCourse = async (req, res) => {
+  const courseId = req.params.id; 
+  const updatedCourseInfo = req.body;
+
+  try {
+    // Check if the course with the given ID exists
+    const existingCourse = await courseModel.findById(courseId);
+    console.log(existingCourse);
+
+    if (!existingCourse) {
+      return res.status(404).json({ msg: "Course not found" });
+    }
+
+    // Update the existing course with the new information
+    existingCourse.set(updatedCourseInfo);
+    await existingCourse.save();
+
+    console.log("updateCourse:", updatedCourseInfo);
+    res.status(200).json({ msg: "Course updated successfully", updatedCourseInfo });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Error while updating course in DB" });
+  }
+};
 
 export default signupAdmin;
