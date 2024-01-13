@@ -44,7 +44,6 @@ export const loginAdmin = (req, res) => {
 }
 
 export const addCourse = async (req, res) => {
-  console.log("inside");
   const courseInfo = req.body;
   await courseModel.findOne({Title:courseInfo.Title}).then(async (course) => {
     if (course) {
