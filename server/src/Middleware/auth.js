@@ -8,9 +8,7 @@ export const verifyToken = (req, res, next) => {
       if (err) {
         res.status(401).json({message:"Invalid token"})
       } else {
-        console.log("Valid Admin:", value);
-        if (value.role == "Admin") {
-          console.log("Valid Admin2:", value);
+        if (value.role == "admin") {
           req.user = value.username;
           next();
         } else {

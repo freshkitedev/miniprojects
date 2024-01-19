@@ -63,16 +63,15 @@ export const addCourse = async (req, res) => {
   })
 }
 export const deletecourse = async (req, res) => {
-  const courseInfo = req.params.Title;
-  await courseModel.findOneAndDelete(courseInfo).then( async (course) => {
-    if (course) {
-      res.status(200).json({msg:"course deleted successfully",course})
-      console.log("deletecourse:", courseInfo);
-    } else {
-      res.status(404).json({msg:"No such courses Available"})
-    }
-  })
-}
-
-
+  const courseId = req.params.id;
+  if (!mon.Types.ObjectId.isValid(courseId)) {
+    return res.status(400).json({ msg: 'Invalid course ID' });
+  }
+  const course = await courseModel.findByIdAndDelete(courseId);
+  if (course) {
+    return res.status(200).json({ msg: 'Course deleted successfully', course });
+  } else {
+    return res.status(404).json({ msg: 'No such course available' });
+  }
+  };
 export default signupAdmin;
