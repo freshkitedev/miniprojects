@@ -1,0 +1,11 @@
+.appbar {
+    display: flex;
+    justify-content: space-between;
+    
+}
+.signin {
+    margin-left: 10px;
+}
+.sbtn {
+    display: flex;
+}
