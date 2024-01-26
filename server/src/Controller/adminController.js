@@ -15,7 +15,7 @@ const signupAdmin = (req, res) => {
     if (admin) {
       res.status(403).json({ message: "Admin already exists" });
     } else {
-      const token = jwt.sign({ username, role: "admin" }, SECRET_KEY, {
+      const token = jwt.sign({ username, role: "Admin" }, SECRET_KEY, {
         expiresIn: "1h",
       });
       const adminData = new Adminmodel(data);
