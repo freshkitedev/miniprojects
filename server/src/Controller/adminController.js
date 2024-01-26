@@ -78,4 +78,12 @@ export const updateCourse = async(req,res) =>{
   }
 }
 
+export const getAllCourses = async(req,res)=>{
+  try{
+    const user = await courseModel.find();
+    res.status(200).json({"Courses":user})
+  }catch (error) {
+    res.status(500).json({ message: 'Internal server error' });
+}}
+
 export default signupAdmin;
