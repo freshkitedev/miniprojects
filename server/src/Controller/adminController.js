@@ -54,12 +54,28 @@ export const addCourse = async (req, res) => {
         const courseData = new courseModel(courseInfo);
         await courseData.save();
         console.log("addCourse:", courseInfo);
-        res.status(200).json({ msg: "Course Added succesfully", courseInfo });
+        res.status(200).json({ msg: "Course Added successfully", courseData });
       } catch (err) {
         res.status(400).json({ message: "Error while update course to DB" });
       }
     }
   })
+}
+
+export const updateCourse = async(req,res) =>{
+  try{
+   const courseInfo = req.body;
+   const id = req.params.id;
+   const updatedCourse = await courseModel.findOneAndUpdate({_id:id},
+     courseInfo, { new: true })
+   if(courseModel){
+     res.status(200).json({msg:"Updated successfully",updatedCourse})
+   }else{
+     res.status(404).json({msg: "id not found"});
+   }
+  }catch (err) {
+    res.status(400).json({ message: "Error while update course to DB" });
+  }
 }
 
 export default signupAdmin;
