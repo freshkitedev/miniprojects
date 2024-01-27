@@ -62,16 +62,5 @@ export const addCourse = async (req, res) => {
     }
   })
 }
-export const deletecourse = async (req, res) => {
-  const courseId = req.params.id;
-  if (!mon.Types.ObjectId.isValid(courseId)) {
-    return res.status(400).json({ msg: 'Invalid course ID' });
-  }
-  const course = await courseModel.findByIdAndDelete(courseId);
-  if (course) {
-    return res.status(200).json({ msg: 'Course deleted successfully', course });
-  } else {
-    return res.status(404).json({ msg: 'No such course available' });
-  }
-  };
+
 export default signupAdmin;
