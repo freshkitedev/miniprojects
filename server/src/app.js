@@ -1,10 +1,12 @@
 import exp from "express"
 import mon from "mongoose"
 import dot from "dotenv"
+import cors from "cors"
 import adminRouter from "./Routes/adminRoute.js"
 import userRouter from "./Routes/userRoute.js"
 
 const app = exp()
+app.use(cors())
 
 dot.config();
 

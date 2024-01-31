@@ -5,12 +5,11 @@ import { courseModel } from "../Model/courseModel.js";
 import { SECRET_KEY } from "../Middleware/auth.js";
 
 const signupAdmin = (req, res) => {
-  console.log("Reached route:", req.body);
   const data = { username: req.body.username, password: req.body.password };
   const {username, password} = req.body;
   const msg = "Admin created";
 
-  console.log("Data:", data);
+  console.log("Admin signup:", data);
   function createAdmin(admin) {
     if (admin) {
       res.status(403).json({ message: "Admin already exists" });
@@ -37,10 +36,10 @@ export const loginAdmin = (req, res) => {
         }
 
         const token  = jwt.sign({username, role:"Admin"}, SECRET_KEY, {expiresIn:'1h'});
-        console.log("Admin logged in");
+        console.log("Admin logged in:", username);
         res.status(200).json({message:"Admin logged in Succesfully", token});
     }
-    Adminmodel.findOne({username}).then(loginAdmin);
+    Adminmodel.findOne({username, password}).then(loginAdmin);
 }
 
 export const addCourse = async (req, res) => {
