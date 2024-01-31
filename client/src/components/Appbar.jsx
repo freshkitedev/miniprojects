@@ -1,4 +1,4 @@
-import { Button} from "@mui/material";
+import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import "./Appbar.css";
 const Coursera = () => {
@@ -16,15 +16,24 @@ const Coursera = () => {
 };
 
 export const Signinup = () => {
+  const navigate = useNavigate();
   return (
     <div className="sbtn">
       <div>
-        <Button style={{ backgroundColor: "#4CAF50" }} variant="contained">
+        <Button
+          style={{ backgroundColor: "#4CAF50" }}
+          variant="contained"
+          onClick={() => {
+            navigate("/signup");
+          }}
+        >
           Signup
         </Button>
       </div>
       <div className="signin">
-        <Button variant="contained">Signin</Button>
+        <Button variant="contained" onClick={() => {
+            navigate("/signin");
+          }}>Signin</Button>
       </div>
     </div>
   );
