@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import "./Appbar.css";
+import { useAuth } from "./Authcontext";
 const Coursera = () => {
   const navigate = useNavigate();
   return (
@@ -38,11 +39,28 @@ export const Signinup = () => {
     </div>
   );
 };
+
+const Addcourse = () => {
+    const navigate = useNavigate();
+    const navigateToHome = () => {
+      navigate("/")
+    }
+    const {logout} = useAuth();
+    return (
+      <div>
+        <Button onClick={() => {navigateToHome()}}>Add course</Button>
+        <Button >Courses</Button>
+        <Button variant="contained" onClick={() => {logout(); navigateToHome()}}>Logout</Button>
+      </div>
+    )
+}
+
 export const Appbar = () => {
+  const {isLoggedIn} = useAuth();
   return (
     <div className="appbar">
       <Coursera />
-      <Signinup />
+      {isLoggedIn ? <Addcourse /> : <Signinup />}
     </div>
   );
 };
