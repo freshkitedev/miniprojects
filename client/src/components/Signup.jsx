@@ -2,19 +2,25 @@ import { Button, Card, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../config";
+import { useAuth } from "./Authcontext";
+import { useNavigate } from "react-router-dom";
 
 export const Signup = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const sign = props.signin ? "Signin" : "Signup";
+  const {login} = useAuth();
+  const navigate = useNavigate();
 
   const handleSignup = async () => {
+    //e.preventDefault();
     const data = {username: email, password:password};
-    const login = props.signin ? "login" : "signup";
-    const response = await axios.post(`${BASE_URL}/admin/${login}`, data);
+    const login_str = props.signin ? "login" : "signup";
+    const response = await axios.post(`${BASE_URL}/admin/${login_str}`, data);
     localStorage.setItem("token", response.data.token);
     console.log(("Token:", response.data.token));
-    window.location = "/"
+    login();
+    navigate("/");
   }
 
   return (
