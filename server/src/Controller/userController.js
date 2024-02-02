@@ -11,7 +11,7 @@ export const signupUser = (req, res) => {
 
       function createUser(user) {
         if (user) {
-          res.status(403).json({ message: "User already exists" });
+          res.status(403).json({ message: "Username already exists" });
         } else {
           const token = jwt.sign({ username, role: "User" }, SECRET_KEY, {
             expiresIn: "1h",
@@ -32,7 +32,7 @@ export const loginUser = (req, res) => {
       const {username, password} = req.body;
       function loginUser(user) {
           if (!user) {
-              res.status(403).json({message:" User doesn't exist"});
+              res.status(403).json({message:"Invalid username/password"});
               return;
           }
           const token  = jwt.sign({username, role:"User"}, SECRET_KEY, {expiresIn:'1h'});
