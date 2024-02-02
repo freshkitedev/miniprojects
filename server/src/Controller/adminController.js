@@ -12,7 +12,7 @@ const signupAdmin = (req, res) => {
   console.log("Admin signup:", data);
   function createAdmin(admin) {
     if (admin) {
-      res.status(403).json({ message: "Admin already exists" });
+      res.status(403).json({ message: "Admin username already exists" });
     } else {
       const token = jwt.sign({ username, role: "Admin" }, SECRET_KEY, {
         expiresIn: "1h",
@@ -31,7 +31,7 @@ export const loginAdmin = (req, res) => {
 
     function loginAdmin(admin) {
         if (!admin) {
-            res.status(403).json({message:"Admin doesn't exist"});
+            res.status(403).json({message:"Invalid username/password"});
             return;
         }
 

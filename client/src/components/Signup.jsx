@@ -1,27 +1,32 @@
 import { Button, Card, TextField, Typography } from "@mui/material";
 import { useState } from "react";
-import axios from "axios";
-import { BASE_URL } from "../config";
 import { useAuth } from "./Authcontext";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../utils/axiosconfig";
 
 export const Signup = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const sign = props.signin ? "Signin" : "Signup";
-  const {login} = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
+  const [error, setError] = useState(null);
 
   const handleSignup = async () => {
     //e.preventDefault();
-    const data = {username: email, password:password};
+    const data = { username: email, password: password };
     const login_str = props.signin ? "login" : "signup";
-    const response = await axios.post(`${BASE_URL}/admin/${login_str}`, data);
-    localStorage.setItem("token", response.data.token);
-    console.log(("Token:", response.data.token));
-    login();
-    navigate("/");
-  }
+    try {
+      //const response = await axios.post(`${BASE_URL}/admin/${login_str}`, data);
+      const response = await axiosInstance.post(`/admin/${login_str}`, data);
+      localStorage.setItem("token", response.data.token);
+      console.log(("Token:", response.data.token));
+      login();
+      navigate("/");
+    } catch (error) {
+      setError(error);
+    }
+  };
 
   return (
     <div>
@@ -36,7 +41,8 @@ export const Signup = (props) => {
             label="Email"
             variant="outlined"
           />
-          <br /><br />
+          <br />
+          <br />
           <TextField
             onChange={(e) => {
               setPassword(e.target.value);
@@ -45,8 +51,14 @@ export const Signup = (props) => {
             label="Password"
             variant="outlined"
           />
-          <br/><br/>
-          <Button variant="contained" size="large" onClick={handleSignup}>{sign}</Button>
+          <br />
+          <br />
+          <Button variant="contained" size="large" onClick={handleSignup}>
+            {sign}
+          </Button>
+
+          {error && <div style={{ color: 'red' }}>{error.message}</div>}
+
         </Card>
       </center>
     </div>
