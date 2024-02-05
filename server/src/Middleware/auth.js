@@ -16,7 +16,8 @@ export const verifyToken = (req, res, next) => {
         console.log("Valid User:", value);
         req.user = value.username;
       } else {
-        res.status(401).json({message:"Invalid user"})
+        res.status(401).json({message:"Invalid user"});
+        return;
       }
       next();
     }

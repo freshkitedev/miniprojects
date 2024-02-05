@@ -68,7 +68,7 @@ export const updateCourse = async(req,res) =>{
    const id = req.params.id;
    const updatedCourse = await courseModel.findOneAndUpdate({_id:id},
      courseInfo, { new: true })
-   if(courseModel){
+   if(updateCourse){
      res.status(200).json({msg:"Updated successfully",updatedCourse})
    }else{
      res.status(404).json({msg: "id not found"});
