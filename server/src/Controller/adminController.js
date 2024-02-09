@@ -44,20 +44,20 @@ export const loginAdmin = (req, res) => {
 
 export const addCourse = async (req, res) => {
   const courseInfo = req.body;
-  await courseModel.findOne({Title:courseInfo.Title}).then(async (course) => {
-    if (course) {
-      res.status(403).json({msg:"Course already available choose different title",
-        title:courseInfo.Title})
-    } else {
+  console.log("Addcourse:", courseInfo);
+  await courseModel.findOne({title:courseInfo.Title}).then(async (course) => {
+  
+    console.log("Course:", course);
+    
       try {
         const courseData = new courseModel(courseInfo);
         await courseData.save();
-        console.log("addCourse:", courseInfo);
+        console.log("addCourse to DB:", courseInfo);
         res.status(200).json({ msg: "Course Added successfully", courseData });
       } catch (err) {
         res.status(400).json({ message: "Error while update course to DB" });
       }
-    }
+   
   })
 }
 

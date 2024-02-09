@@ -48,7 +48,7 @@ const Addcourse = () => {
     const {logout} = useAuth();
     return (
       <div>
-        <Button onClick={() => {navigateToHome()}}>Add course</Button>
+        <Button onClick={() => {navigate("/addcourse")}}>Add course</Button>
         <Button >Courses</Button>
         <Button variant="contained" onClick={() => {logout(); navigateToHome()}}>Logout</Button>
       </div>
