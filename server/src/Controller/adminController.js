@@ -57,7 +57,6 @@ export const addCourse = async (req, res) => {
       } catch (err) {
         res.status(400).json({ message: "Error while update course to DB" });
       }
-   
   })
 }
 
@@ -68,8 +67,10 @@ export const updateCourse = async(req,res) =>{
    const updatedCourse = await courseModel.findOneAndUpdate({_id:id},
      courseInfo, { new: true })
    if(updateCourse){
+     console.log("Update course:", updateCourse);
      res.status(200).json({msg:"Updated successfully",updatedCourse})
    }else{
+     console.log("update: id not found");
      res.status(404).json({msg: "id not found"});
    }
   }catch (err) {
@@ -77,10 +78,25 @@ export const updateCourse = async(req,res) =>{
   }
 }
 
+export const getCourse = async (req, res) => {
+  try {
+    const id = req.params.id;
+    console.log("Getcourseid:", id);
+    const course = await courseModel.findById(id);
+    console.log("Getcourse:", course);
+    res.status(200).json({course});
+
+  } catch (error) {
+    console.log("Get course err", err);
+    res.status(400).json({message:"Error while getting specific course"})
+  }
+}
+
 export const getAllCourses = async(req,res)=>{
   try{
-    const user = await courseModel.find();
-    res.status(200).json({"Courses":user})
+    const courses = await courseModel.find();
+    console.log("Getallcourse:", courses);
+    res.status(200).json({"Courses":courses})
   }catch (error) {
     res.status(500).json({ message: 'Internal server error' });
 }}

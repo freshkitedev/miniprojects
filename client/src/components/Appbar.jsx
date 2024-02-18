@@ -49,7 +49,7 @@ const Addcourse = () => {
     return (
       <div>
         <Button onClick={() => {navigate("/addcourse")}}>Add course</Button>
-        <Button >Courses</Button>
+        <Button onClick={() => {navigate("/getcourses")}}>Courses</Button>
         <Button variant="contained" onClick={() => {logout(); navigateToHome()}}>Logout</Button>
       </div>
     )

@@ -50,6 +50,7 @@ export const Signup = (props) => {
             fullWidth={true}
             label="Password"
             variant="outlined"
+            type="password"
           />
           <br />
           <br />
