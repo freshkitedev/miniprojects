@@ -1,5 +1,5 @@
 import { Card, Grid } from "@mui/material";
-import { useEffect, useState } from "react"
+import {useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 import { Typography, TextField, Button } from "@mui/material";
 import {Loading} from "./Loading";
@@ -9,7 +9,7 @@ function Updatecourse() {
     let { courseId } = useParams();
     const [course, setCourse] = useState(null);
     const [error, setError] = useState(null);
-
+  
     const getCourseById = async (id) => {
       try {
         const res = await axiosInstance.get(`/admin/getcourse/${id}`, {
@@ -17,7 +17,6 @@ function Updatecourse() {
             Authorization: "Bearer " + localStorage.getItem("token"),
           }
         });
-        console.log("Getcourseby id:", res.data.course);
         setCourse(res.data.course);
       } catch (err) {
         setError(error);
@@ -60,14 +59,11 @@ function GrayTopper({title}) {
 function UpdateCard({course, setCourse}) {
     const [title, setTitle] = useState(course.Title);
     const [description, setDescription] = useState(course.Description);
-    const [image, setImage] = useState(course.ImageLink);
+    const [image, setImage] = useState(course.Imagelink);
     const [price, setPrice] = useState(course.Price);
     const [error, setError] = useState(null);  
 
-    const updateCourse = async (id,val) => {
-
-        console.log(val.target.variant);
-        
+    const updateCourse = async (id) => {      
         const data = {
             Title: title,
             Description: description,
@@ -89,6 +85,8 @@ function UpdateCard({course, setCourse}) {
     }
 
     return <div style={{display: "flex", justifyContent: "center"}}>
+            <Typography style={{margintop: 10,color:'white'}} variant={"h3"}>{title}</Typography>
+
     <Card varint={"outlined"} style={{maxWidth: 600, marginTop: 200}}>
         <div style={{padding: 20}}>
             <Typography style={{marginBottom: 10}}>Update course details</Typography>
@@ -137,7 +135,7 @@ function UpdateCard({course, setCourse}) {
 
             <Button
                 variant="contained"
-                onClick={(e)=>updateCourse(course._id,e)}
+                onClick={(e)=>updateCourse(course._id)}
             > Update course</Button>
             {error && <div style={{color:'red'}}> {error.message} </div>}
         </div>
@@ -146,7 +144,7 @@ function UpdateCard({course, setCourse}) {
 }
 
 function CourseCard(props) {
-    const course = props.course;
+     const {Imagelink,Price,Title} = props.course;
     return <div style={{display: "flex",  marginTop: 50, justifyContent: "center", width: "100%"}}>
      <Card style={{
         margin: 10,
@@ -157,14 +155,14 @@ function CourseCard(props) {
         paddingBottom: 15,
         zIndex: 2
     }}>
-        <img src={course.ImageLink} style={{width: 350}} alt="course not found" ></img>
+        <img src={Imagelink} style={{width: 350}} alt="img not found" ></img>
         <div style={{marginLeft: 10}}>
-            <Typography variant="h5">{course.title}</Typography>
+            <Typography variant="h5">{Title}</Typography>
             <Typography variant="subtitle2" style={{color: "gray"}}>
                 Price
             </Typography>
             <Typography variant="subtitle1">
-                <b>Rs {course.price} </b>
+                <b>Rs  {Price}</b>
             </Typography>
         </div>
     </Card>

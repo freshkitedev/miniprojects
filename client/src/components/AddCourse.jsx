@@ -3,12 +3,17 @@ import Button from "@mui/material/Button";
 import {Card} from "@mui/material";
 import {useState} from "react";
 import axiosInstance from "../utils/axiosconfig.js";
+import { CourseState } from "../state/atoms/Courses.js";
+import { useRecoilState } from "recoil";
 function AddCourse() {
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [image, setImage] = useState("");
-    const [price, setPrice] = useState(0);
-    const [error, setError] = useState(null);
+  
+    const [courseData , setCourseData] = useRecoilState(CourseState);
+
+    const { title, description, image, price, error } = courseData;
+
+    const handleInputChange = (property, value) => {
+        setCourseData((prevAppData) => ({ ...prevAppData, [property]: value }));
+      };
 
     const addCourse = async () => {
         const data = {
@@ -26,7 +31,7 @@ function AddCourse() {
           });
           alert("Added course!");
         } catch (err) {
-            setError(err);
+            handleInputChange('error',err)
         }
     }
 
@@ -36,7 +41,7 @@ function AddCourse() {
                 <TextField
                     style={{marginBottom: 10}}
                     onChange={(e) => {
-                        setTitle(e.target.value)
+                        handleInputChange('title',e.target.value)
                     }}
                     fullWidth={true}
                     label="Title"
@@ -46,7 +51,7 @@ function AddCourse() {
                 <TextField
                     style={{marginBottom: 10}}
                     onChange={(e) => {
-                        setDescription(e.target.value)
+                        handleInputChange('description',e.target.value)
                     }}
                     fullWidth={true}
                     label="Description"
@@ -56,7 +61,7 @@ function AddCourse() {
                 <TextField
                     style={{marginBottom: 10}}
                     onChange={(e) => {
-                        setImage(e.target.value)
+                        handleInputChange('image',e.target.value)
                     }}
                     fullWidth={true}
                     label="Image link"
@@ -66,7 +71,7 @@ function AddCourse() {
                 <TextField
                     style={{marginBottom: 10}}
                     onChange={(e) => {
-                        setPrice(e.target.value)
+                        handleInputChange('price',e.target.value)
                     }}
                     fullWidth={true}
                     label="Price"

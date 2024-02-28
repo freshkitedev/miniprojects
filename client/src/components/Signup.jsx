@@ -1,14 +1,15 @@
 import { Button, Card, TextField, Typography } from "@mui/material";
 import { useState } from "react";
-import { useAuth } from "./Authcontext";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../utils/axiosconfig";
+import { useLoggedInState } from "../state/atoms/isLoggedin.js";
 
 export const Signup = (props) => {
+  const [isLoggedIn,setisLoggedin] = useLoggedInState();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const sign = props.signin ? "Signin" : "Signup";
-  const { login } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
 
@@ -20,8 +21,7 @@ export const Signup = (props) => {
       //const response = await axios.post(`${BASE_URL}/admin/${login_str}`, data);
       const response = await axiosInstance.post(`/admin/${login_str}`, data);
       localStorage.setItem("token", response.data.token);
-      console.log(("Token:", response.data.token));
-      login();
+      setisLoggedin(true)
       navigate("/");
     } catch (error) {
       setError(error);
@@ -30,7 +30,7 @@ export const Signup = (props) => {
 
   return (
     <div>
-      <center style={{ marginTop: 150 }}>
+      <center style={{ marginTop: 120 }}>
         <Typography variant="h6">Welcome to Freshkite. </Typography>
         <Card style={{ width: 300, padding: 20, marginTop: 10 }}>
           <TextField
