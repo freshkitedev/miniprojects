@@ -2,7 +2,6 @@ import { Button, Card, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../utils/axiosconfig";
-import {useRecoilState} from "recoil"
 import { useLoggedInState } from "../state/atoms/isLoggedin.js";
 
 export const Signup = (props) => {
@@ -22,7 +21,6 @@ export const Signup = (props) => {
       //const response = await axios.post(`${BASE_URL}/admin/${login_str}`, data);
       const response = await axiosInstance.post(`/admin/${login_str}`, data);
       localStorage.setItem("token", response.data.token);
-      console.log(("Token:", response.data.token));
       setisLoggedin(true)
       navigate("/");
     } catch (error) {

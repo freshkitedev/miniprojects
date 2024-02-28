@@ -1,5 +1,5 @@
 import { Card, Grid } from "@mui/material";
-import { useContext, useEffect, useState } from "react"
+import {useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 import { Typography, TextField, Button } from "@mui/material";
 import {Loading} from "./Loading";
@@ -17,7 +17,6 @@ function Updatecourse() {
             Authorization: "Bearer " + localStorage.getItem("token"),
           }
         });
-        console.log("Getcourseby id:", res.data.course);
         setCourse(res.data.course);
       } catch (err) {
         setError(error);
@@ -156,7 +155,7 @@ function CourseCard(props) {
         paddingBottom: 15,
         zIndex: 2
     }}>
-        <img src={.00   } style={{width: 350}} alt="img not found" ></img>
+        <img src={Imagelink} style={{width: 350}} alt="img not found" ></img>
         <div style={{marginLeft: 10}}>
             <Typography variant="h5">{Title}</Typography>
             <Typography variant="subtitle2" style={{color: "gray"}}>

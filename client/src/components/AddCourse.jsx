@@ -7,7 +7,7 @@ import { CourseState } from "../state/atoms/Courses.js";
 import { useRecoilState } from "recoil";
 function AddCourse() {
   
-    const [courseData, setCourseData] = useRecoilState(CourseState);
+    const [courseData , setCourseData] = useRecoilState(CourseState);
 
     const { title, description, image, price, error } = courseData;
 

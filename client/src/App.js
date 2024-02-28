@@ -12,7 +12,7 @@ function App() {
     <div>
       <Router>
       <RecoilRoot>
-        <Appbar />
+        <Appbar />                                                        
         <Routes>
           <Route path={"/"} element={<Landing />} />
           <Route path={"/signin"} element={<Signup signin={true}/>} />

@@ -7,15 +7,7 @@ function Getcourses() {
     const [courses, setCourses] = useState([]);
     const [error, setError] = useState(null);
 
-    // const init1 = async () => {
-    //     const response = await axios.get(`${BASE_URL}/admin/getallcourses/`, {
-    //         headers: {
-    //             Authorization: `Bearer ${localStorage.getItem('token')}`
-    //         }
-    //     })
-    //     console.log("All courses:",response.data.courses);
-    //     setCourses(response.data.courses)
-    // }
+
     const init = async () => {
         try {
             const res = await axiosInstance.get("/admin/getallcourses/", {
@@ -23,7 +15,6 @@ function Getcourses() {
                     Authorization:`Bearer ${localStorage.getItem('token')}`
                 }
             })
-            console.log("All courses:",res.data.Courses);
             setCourses(res.data.Courses)
         } catch(err) {
             setError(err);
@@ -45,7 +36,6 @@ function Getcourses() {
 
 export function Course({course}) {
     const navigate = useNavigate();
-    console.log("Display course:", course);
 
     return <Card style={{
         margin: 10,
