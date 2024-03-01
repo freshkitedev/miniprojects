@@ -32,7 +32,6 @@ function AddCourse() {
               Authorization: "Bearer " + localStorage.getItem("token"),
             },
           });
-          console.log(titleforalert);
           alert("Added " + titleforalert + " " + "course!");
         } catch (err) {
             handleInputChange('error',err)

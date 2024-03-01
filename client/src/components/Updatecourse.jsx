@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Typography, TextField, Button } from "@mui/material";
 import {Loading} from "./Loading";
 import axiosInstance from "../utils/axiosconfig.js";
-import { CourseState } from "../state/atoms/Courses.js";
+
 function Updatecourse() {
     let { courseId } = useParams();
     const [course, setCourse] = useState(null);
