@@ -61,7 +61,9 @@ function UpdateCard({course, setCourse}) {
     const [description, setDescription] = useState(course.Description);
     const [image, setImage] = useState(course.Imagelink);
     const [price, setPrice] = useState(course.Price);
-    const [error, setError] = useState(null);  
+    const [error, setError] = useState(null); 
+    
+
 
     const updateCourse = async (id) => {      
         const data = {

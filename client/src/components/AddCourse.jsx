@@ -4,12 +4,15 @@ import {Card} from "@mui/material";
 import {useState} from "react";
 import axiosInstance from "../utils/axiosconfig.js";
 import { CourseState } from "../state/atoms/Courses.js";
-import { useRecoilState } from "recoil";
+import { useRecoilState,useRecoilValue } from "recoil";
+import {courseTitleSelector} from "../state/selectors/courseTitle.js"
 function AddCourse() {
   
     const [courseData , setCourseData] = useRecoilState(CourseState);
 
     const { title, description, image, price, error } = courseData;
+
+     const titleforalert = useRecoilValue(courseTitleSelector);
 
     const handleInputChange = (property, value) => {
         setCourseData((prevAppData) => ({ ...prevAppData, [property]: value }));
@@ -29,7 +32,7 @@ function AddCourse() {
               Authorization: "Bearer " + localStorage.getItem("token"),
             },
           });
-          alert("Added course!");
+          alert("Added " + titleforalert + " " + "course!");
         } catch (err) {
             handleInputChange('error',err)
         }
