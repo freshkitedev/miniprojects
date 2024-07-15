@@ -1,0 +1,31 @@
+1.Database: Todo
+2. Collections:
+User: {username:String, password:String}
+Todo: {Title:String, Description:String, done:boolean, username:String}
+
+Routes:
+UserRoutes:
+1. user/signup
+Input : username, password
+Output: message
+
+2. user/signin
+Input : username, password
+Output: token
+
+TodoRoutes:
+1. todo/add
+Input: Title, Description, token
+Output: Added todo
+
+2. todo/get
+Input: token
+Output: Array of Todos
+
+3. todo/update
+Input:Title, Description, token, todoId
+Output: Updated todo
+
+4. todo/delete
+Input: token, todoId
+Output: Sucess/Error message
