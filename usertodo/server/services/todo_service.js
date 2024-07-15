@@ -43,11 +43,12 @@ async function validateUser(userId, todoId) {
     if (user.username !== todo.username) {
       throw new Error("Invalid user token provided");
     }
+    return user;
 }
 
 export const updateTodoInDB = async (userId, todoId, tit, des) => {
     try {
-        await validateUser(userId, todoId);
+        const user = await validateUser(userId, todoId);
         const data = {
             title:tit,
             description: des,
