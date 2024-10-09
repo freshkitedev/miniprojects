@@ -4,6 +4,7 @@ import com.freshkite.todo.dal.MongoTodoRepo;
 import com.freshkite.todo.dal.Todorepo;
 import com.freshkite.todo.model.Todomodel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +13,6 @@ import java.util.List;
 @Service
 public class Todoservice {
     Todorepo repo;
-
-    @Value("${storage}")
-    String data;
 
 //    Todoservice() {
 ////        if (data.equals("Database")) {
@@ -25,13 +23,13 @@ public class Todoservice {
 //        repo = new MongoTodoRepo();
 //    }
     @Autowired
-    public Todoservice(Todorepo repo) {
+    public Todoservice(@Qualifier("todoRepo") Todorepo repo) {
         this.repo = repo;
-        System.out.println("Service constructor: " + data);
+        System.out.println("Service constructor: ");
     }
 
     public List<Todomodel> getTodoService() {
-        System.out.println("Service get:" + data);
+        System.out.println("Service get:");
         return repo.getAllTodos();
     }
 

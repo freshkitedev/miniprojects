@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-@Repository
+
 public interface Todorepo {
     public List<Todomodel> getAllTodos();
     public Todomodel createTodo(Todomodel todo_entry);

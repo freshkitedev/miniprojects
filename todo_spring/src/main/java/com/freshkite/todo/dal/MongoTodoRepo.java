@@ -2,12 +2,14 @@ package com.freshkite.todo.dal;
 
 import com.freshkite.todo.model.Todomodel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Component
+@Primary
 public class MongoTodoRepo implements Todorepo {
     @Autowired
     private Mrepo mrepo;
