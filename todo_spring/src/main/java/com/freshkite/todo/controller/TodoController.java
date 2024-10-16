@@ -13,7 +13,7 @@ public class TodoController {
     @Autowired
     Todoservice tservice;
 
-    @GetMapping("/todos")
+    @GetMapping("/todo")
     public List<Todomodel> getTodoController() {
         System.out.println("Get route");
         return tservice.getTodoService();

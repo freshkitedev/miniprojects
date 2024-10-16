@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class InMemoryTodoRepo implements Todorepo {
@@ -15,14 +16,22 @@ public class InMemoryTodoRepo implements Todorepo {
         System.out.println("InMemoryCons");
         todoMap = new HashMap<>();
     }
+
+    private String generateNewId() {
+        return String.valueOf(todoMap.size() + 198765456);
+    }
+
     public List<Todomodel> getAllTodos() {
         ArrayList<Todomodel> arrayList = new ArrayList<>(todoMap.values());
         return arrayList;
     }
 
-    public Todomodel createTodo(Todomodel todo_entry) {
-        todoMap.put(todo_entry.get_id(), todo_entry);
-        return todo_entry;
+    public Todomodel createTodo(Todomodel todo) {
+        if (todo.getId() == null || todo.getId().isEmpty()) {
+            todo.setId(generateNewId());
+        }
+        todoMap.put(todo.getId(), todo);
+        return todo;
     }
 
     public Todomodel updateTodo(Todomodel todo_entry, String id) {
@@ -35,4 +44,9 @@ public class InMemoryTodoRepo implements Todorepo {
         todoMap.remove(id);
         return id;
     }
+
+    public Optional<Todomodel> getTodoById(String id) {
+        return null;
+    }
+
 }

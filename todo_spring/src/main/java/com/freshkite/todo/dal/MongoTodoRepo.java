@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @Primary
@@ -33,5 +34,10 @@ public class MongoTodoRepo implements Todorepo {
     public String deleteTodo(String id) {
         mrepo.deleteById(id);
         return "Deleted Successfully";
+    }
+
+    @Override
+    public Optional<Todomodel> getTodoById(String id) {
+        return Optional.empty();
     }
 }
