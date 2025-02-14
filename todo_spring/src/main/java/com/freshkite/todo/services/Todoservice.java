@@ -1,27 +1,23 @@
 package com.freshkite.todo.services;
 
-import com.freshkite.todo.dal.MongoTodoRepo;
 import com.freshkite.todo.dal.Todorepo;
+import com.freshkite.todo.dal.jpa.TodorepoJpa;
+import com.freshkite.todo.exception.TodoNotFound;
 import com.freshkite.todo.model.Todomodel;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@Transactional
 public class Todoservice {
     Todorepo repo;
 
-//    Todoservice() {
-////        if (data.equals("Database")) {
-////            System.out.println("Service constructor");
-////            repo = new MongoTodoRepo();
-////        }
-//        System.out.println("Service constructor:" + data);
-//        repo = new MongoTodoRepo();
-//    }
     @Autowired
     public Todoservice(@Qualifier("todoRepo") Todorepo repo) {
         this.repo = repo;
@@ -37,8 +33,12 @@ public class Todoservice {
         return repo.createTodo(todoEntry);
     }
 
-    public Todomodel updateTodoService(Todomodel todoEntry, String id) {
-        return repo.updateTodo(todoEntry, id);
+    public Optional<Todomodel> updateTodoService(Todomodel todoEntry, String id) {
+        Optional<Todomodel> optionTodo = repo.updateTodo(todoEntry, id);
+        if (optionTodo.isEmpty()) {
+            throw new TodoNotFound("Todo is not found id is " + id);
+        }
+        return optionTodo;
     }
 
     public String deleteTodoService(String id) {

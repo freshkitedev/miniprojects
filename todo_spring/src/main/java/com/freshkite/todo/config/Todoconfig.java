@@ -1,14 +1,15 @@
 package com.freshkite.todo.config;
 
-import com.freshkite.todo.dal.InMemoryTodoRepo;
-import com.freshkite.todo.dal.MongoTodoRepo;
-import com.freshkite.todo.dal.PostgresTodoRep;
-import com.freshkite.todo.dal.Todorepo;
+import com.freshkite.todo.dal.*;
+import com.freshkite.todo.dal.jpa.DBTodoRepo;
+import com.freshkite.todo.dal.jpa.EntityManagerRepo;
+import com.freshkite.todo.dal.jpa.PostgresTodoRep;
+import com.freshkite.todo.dal.jpa.TodorepoJpa;
+import com.freshkite.todo.dal.mongo.MongoTodoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 @Configuration
 public class Todoconfig {
@@ -21,8 +22,8 @@ public class Todoconfig {
     @Autowired
     private InMemoryTodoRepo memoryTodoRepo;
 
-   @Autowired
-    private PostgresTodoRep postgresTodoRep;
+    @Autowired
+    private DBTodoRepo dbTodoRepo;
 
     @Bean(name = "todoRepo")
     public Todorepo todoRepo(InMemoryTodoRepo inMemoryTodoRepo) {
@@ -30,11 +31,10 @@ public class Todoconfig {
         if ("mongo".equals(data)) {
             System.out.println("MongoDb:" + data);
             return mongoTodoRepo; // Use MongoTodoRepo if data is "Database"
-        } else if ("inMemory".equals(data)) {
-            System.out.println("InmemoryDB:" + data);
-            return memoryTodoRepo;
-
+        } else if ("inmemory".equals(data)) {
+            System.out.println("inMemory:" + data);
+            return memoryTodoRepo; // Use MongoTodoRepo if data is "Database"
         }
-        return postgresTodoRep;
+        return dbTodoRepo;
     }
 }

@@ -34,10 +34,13 @@ public class InMemoryTodoRepo implements Todorepo {
         return todo;
     }
 
-    public Todomodel updateTodo(Todomodel todo_entry, String id) {
+    public Optional<Todomodel> updateTodo(Todomodel todo_entry, String id) {
+        if (!todoMap.containsKey(id)) {
+            return Optional.empty();
+        }
         todoMap.remove(id);
         todoMap.put(id, todo_entry);
-        return todo_entry;
+        return Optional.of(todo_entry);
     }
 
     public String deleteTodo(String id) {

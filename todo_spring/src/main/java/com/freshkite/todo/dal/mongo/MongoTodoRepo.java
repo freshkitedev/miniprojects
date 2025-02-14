@@ -1,10 +1,10 @@
-package com.freshkite.todo.dal;
+package com.freshkite.todo.dal.mongo;
 
+import com.freshkite.todo.dal.Todorepo;
 import com.freshkite.todo.model.Todomodel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,11 +24,15 @@ public class MongoTodoRepo implements Todorepo {
         return mrepo.save(todo_entry);
     }
 
-    public Todomodel updateTodo(Todomodel todo_entry, String id) {
-        Todomodel oldEntry = mrepo.findById(id).get();
-        oldEntry.setTitle(todo_entry.getTitle());
-        oldEntry.setDescription(todo_entry.getDescription());
-        return mrepo.save(oldEntry);
+    public Optional<Todomodel> updateTodo(Todomodel todo_entry, String id) {
+        Optional <Todomodel> optionTodo = mrepo.findById(id);
+        if (optionTodo.isPresent()) {
+            Todomodel oldEntry = optionTodo.get();
+            oldEntry.setTitle(todo_entry.getTitle());
+            oldEntry.setDescription(todo_entry.getDescription());
+            return Optional.of(mrepo.save(oldEntry));
+        }
+        return Optional.empty();
     }
 
     public String deleteTodo(String id) {
