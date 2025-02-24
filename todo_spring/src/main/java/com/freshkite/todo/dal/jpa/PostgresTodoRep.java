@@ -13,6 +13,7 @@ public class PostgresTodoRep implements TodorepoJpa {
     private Jrepo todoRepository;
 
     public List<TodomodelJpa> getAllTodos() {
+        System.out.println("JPA get all");
         return todoRepository.findAll();
     }
 

@@ -5,6 +5,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.PersistenceException;
 import jakarta.transaction.Transactional;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +17,7 @@ public class EntityManagerRepo implements TodorepoJpa {
     private EntityManager entityManager;
 
     public List<TodomodelJpa> getAllTodos() {
+        System.out.println("Get EM");
         return entityManager.createQuery("SELECT t FROM TodomodelJpa t", TodomodelJpa.class).getResultList();
     }
 

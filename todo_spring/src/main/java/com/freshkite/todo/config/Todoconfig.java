@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 @Configuration
 public class Todoconfig {
@@ -25,7 +26,9 @@ public class Todoconfig {
     @Autowired
     private DBTodoRepo dbTodoRepo;
 
+
     @Bean(name = "todoRepo")
+    @Scope("prototype")
     public Todorepo todoRepo(InMemoryTodoRepo inMemoryTodoRepo) {
         //System.out.println("Data:" + data);
         if ("mongo".equals(data)) {
@@ -35,6 +38,9 @@ public class Todoconfig {
             System.out.println("inMemory:" + data);
             return memoryTodoRepo; // Use MongoTodoRepo if data is "Database"
         }
+        System.out.println("Db todo repo:" + data);
         return dbTodoRepo;
     }
+
+
 }
