@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public class PostgresTodoRep implements TodorepoJpa {
@@ -22,6 +23,8 @@ public class PostgresTodoRep implements TodorepoJpa {
     }
 
     public TodomodelJpa createTodo(TodomodelJpa todo) {
+        todo.setId(UUID.randomUUID().toString()); // Generate unique String ID
+        System.out.println("JPA create todo:" + todo);
         return todoRepository.save(todo);
     }
 

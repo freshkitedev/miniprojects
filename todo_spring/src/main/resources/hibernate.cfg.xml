@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database Connection Settings -->
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://pg-4c03245-taskmanagement-2025.k.aivencloud.com:13213/defaultdb?sslmode=require</property>
+        <property name="hibernate.connection.username">avnadmin</property>
+
+        <!-- Hibernate Dialect -->
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+
+        <!-- Connection Pooling -->
+        <property name="hibernate.hikari.maximum-pool-size">10</property>
+        <property name="hibernate.hikari.minimum-idle">2</property>
+        <property name="hibernate.hikari.idle-timeout">30000</property>
+        <property name="hibernate.hikari.connection-timeout">20000</property>
+        <property name="hibernate.hikari.max-lifetime">1800000</property>
+
+        <!-- Hibernate Settings -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <!-- Entity Scanning -->
+        <mapping class="com.freshkite.todo.model.TodomodelJpa"/>
+    </session-factory>
+</hibernate-configuration>
